@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Tier-ECS Student Attendance APP</title>
+</head>
+
+<body>
+    <h1> 3-Tier ECS APP</h1>
+    <p> Welcome to my simple 3-Tier ECS Student Attendance App! This application is designed to demonstrate the architecture of a 3-tier architecture using Amazon ECS (Elastic Container Service). The standard format of an 3-Tier application consists of three layers: The presentation Layer (Frontend), The application layer (Backend) and the data layer (database). </p>
+    
+    <h2> Add student</h2>
+    <input id="studentName" placeholder=" Enter your name: ">
+    <button onclick="addStudent()">Add student</button>
+
+    <h2> List of all students</h2>
+    <div id="students"></div>
+    <script>
+
+        const API_URL = "http://backend:5000";
+        async function getStudents() {
+            const res = await fetch(`${API_URL}/api/students`);
+            const data = await res.json();
+            document.getElementById("students").innerHTML = data.students.map(s => `<p>${s.name} </p>`).join("")
+        }
+        
+
+
+        async function addStudent() {
+            const name = document.getElementById("studentName").value;
+            await fetch (`${API_URL}/api/students`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({name})
+            })
+            getStudents()
+
+        }
+        getStudents()
+    </script>
+    
+</body>
+</html>
