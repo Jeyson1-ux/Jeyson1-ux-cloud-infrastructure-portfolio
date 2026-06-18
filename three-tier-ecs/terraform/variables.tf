@@ -65,11 +65,12 @@ variable "db_username" {
 variable "frontend_image" {
   description = "Declare the frontend image"
   type        = string
-  default     = ""
+  default     = "121861012275.dkr.ecr.ap-south-1.amazonaws.com/bootcamp-3tier-ecs-frontend:latest"
 }
 
 variable "backend_image" {
   description = "Declare the frontend image"
   type        = string
-  default     = ""
+  default     = "121861012275.dkr.ecr.ap-south-1.amazonaws.com/bootcamp-3tier-ecs-backend:latest"
+
 }

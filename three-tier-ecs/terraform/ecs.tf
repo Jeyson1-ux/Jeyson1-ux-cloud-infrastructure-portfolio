@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "frontend" {
     name  = "frontend"
     image = var.frontend_image
     portMappings = [{
-      containerPort = 3000
+      containerPort = 80
       protocol      = "tcp"
       name          = "frontend-port"
     }]
@@ -105,7 +105,7 @@ resource "aws_ecs_service" "frontend" {
   load_balancer {
     target_group_arn = aws_lb_target_group.alb.arn
     container_name   = "frontend"
-    container_port   = 3000
+    container_port   = 80
   }
 
   service_connect_configuration {

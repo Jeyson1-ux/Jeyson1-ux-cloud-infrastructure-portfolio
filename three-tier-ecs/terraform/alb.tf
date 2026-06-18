@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "alb" {
 
   health_check {
     path = "/"
-    port = 3000
+    port = 80
   }
 
 
